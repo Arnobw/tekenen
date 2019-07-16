@@ -87,7 +87,7 @@ function color(e) {
         y=2;
     }
 }
-b = document.getElementsByClassName('button');
+b = document.getElementsByTagName('button');
 for(i=0; i<b.length;i++){
     b[i].addEventListener('click', color);
 }
