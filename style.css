@@ -37,3 +37,36 @@ button {
     display:inline-block;
     border: solid 1px orange;
 }
+
+#green {
+    background-color: green;
+}
+
+#red {
+    background-color:red;
+
+}
+
+#yellow {
+    background-color:yellow;
+}
+
+#orange {
+    background-color:orange;
+}
+
+#blue {
+    background-color:blue;
+}
+
+#pink {
+    background-color:pink;
+}
+
+#black {
+    background-color:black;
+}
+
+#white {
+    background-color:white;
+}

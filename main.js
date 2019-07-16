@@ -46,34 +46,52 @@ function init() {
     }, false);
 }
 
-function color(obj) {
-    switch (obj.id) {
-        case "green":
-            x = "green";
-            break;
-        case "red":
-            x = "red";
-            break;
-        case "yellow":
-            x = "yellow";
-            break;
-        case "orange":
-            x = "orange";
-            break;
-        case "blue":
-            x = "blue";
-            break;
-        case "pink":
-            x = "pink";
-            break;
-        case "black":
-            x = "black";
-            break;
-    }
-    if (x == "white") y = 14;
-    else y = 2;
+// function color(obj) {
+//     switch (obj.id) {
+//         case "green":
+//             x = "green";
+//             break;
+//         case "red":
+//             x = "red";
+//             break;
+//         case "yellow":
+//             x = "yellow";
+//             break;
+//         case "orange":
+//             x = "orange";
+//             break;
+//         case "blue":
+//             x = "blue";
+//             break;
+//         case "pink":
+//             x = "pink";
+//             break;
+//         case "black":
+//             x = "black";
+//             break;
+//         case "white":
+//             x="white";
+//             break;
+//     }
+//     if (x == "white") y = 14;
+//     else y = 2;
 
+// }
+
+function color(e) {
+    x= e.target.id;
+    if(x=="white"){
+        y = 14;
+    }
+    else {
+        y=2;
+    }
 }
+b = document.getElementsByClassName('button');
+for(i=0; i<b.length;i++){
+    b[i].addEventListener('click', color);
+}
+
 
 function draw() {
     ctx.beginPath();
@@ -131,4 +149,7 @@ function findxy(res, e) {
     }
 }
 
-document.onload(init());
+
+
+//init paint functions :))))))
+document.onload= init();
