@@ -1,0 +1,39 @@
+#can {
+    border: solid 1px black;
+    cursor: crosshair;
+    background-size:cover;
+    position: relative;
+
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+main {
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    
+    border:solid 1px red;
+}
+
+#knoppen {
+  
+    border: solid 1px green;
+    margin:0 auto;
+    display: block;   
+    width:1600px;
+}
+
+button {
+    height: 100px;
+    width:100px;
+    padding:20px;
+    box-sizing: border-box;
+    display:inline-block;
+    border: solid 1px orange;
+}
