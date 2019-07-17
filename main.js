@@ -16,6 +16,9 @@
 
 //mooiere manier : https://codepen.io/medo001/pen/FIbza
 
+var x = "black",
+    y = 2;
+
 var canvas, ctx, flag = false,
     prevX = 0,
     currX = 0,
@@ -23,8 +26,24 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false;
 
-var x = "black",
-    y = 2;
+
+    function set_brush_size(){
+       
+    }
+
+    document.getElementById("brush").addEventListener("keyup", function(e) {
+      
+    
+        // Enter is pressed
+      
+            y=document.getElementById('brush').value;
+        
+    });
+
+    
+
+
+
 
 function init() {
     canvas = document.getElementById('can');
@@ -45,71 +64,67 @@ function init() {
         findxy('out', e)
     }, false);
 }
-
-// function color(obj) {
-//     switch (obj.id) {
-//         case "green":
-//             x = "green";
-//             break;
-//         case "red":
-//             x = "red";
-//             break;
-//         case "yellow":
-//             x = "yellow";
-//             break;
-//         case "orange":
-//             x = "orange";
-//             break;
-//         case "blue":
-//             x = "blue";
-//             break;
-//         case "pink":
-//             x = "pink";
-//             break;
-//         case "black":
-//             x = "black";
-//             break;
-//         case "white":
-//             x="white";
-//             break;
-//     }
-//     if (x == "white") y = 14;
-//     else y = 2;
-
-// }
-
-function color(e) {
+function set_brush_color(e) {
     x= e.target.id;
-    if(x=="white"){
-        y = 30;
+ 
+    if (x == "random"){
+        x = getRandomColor();
     }
     else {
-        y=2;
+        ctx.strokeStyle = x;
     }
 }
+
+
+function getRandomColor() {
+    var r=255,g=0,b=0;
+    
+    setInterval(function(){
+      if(r > 0 && b == 0){
+        r--;
+        g++;
+      }
+      if(g > 0 && r == 0){
+        g--;
+        b++;
+      }
+      if(b > 0 && g == 0){
+        r++;
+        b--;
+      }
+      x ="rgb("+r+","+g+","+b+")";
+    
+    },10);
+        
+    }
+
+
 b = document.getElementsByTagName('button');
 for(i=0; i<b.length;i++){
-    b[i].addEventListener('click', color);
+    b[i].addEventListener('click', set_brush_color);
 }
 
 
 function draw() {
     ctx.beginPath();
-    ctx.moveTo(prevX, prevY);
-    ctx.lineTo(currX, currY);
     ctx.strokeStyle = x;
+     
+   
     ctx.lineWidth = y;
+    ctx.arc(currX, currY, y, 0, Math.PI * 8)
     ctx.stroke();
     ctx.closePath();
+    ctx.fillStyle = x;
 }
 
 function erase() {
-    var m = confirm("Want to clear");
+    var m = confirm("Clear canvas?");
     if (m) {
         ctx.clearRect(0, 0, w, h);
-        document.getElementById("canvasimg").style.display = "none";
+        document.getElementById("can").style.display = "none";
     }
 }
+document.getElementById('clear').addEventListener('click', erase);
 
 function save() {
     document.getElementById("canvasimg").style.border = "2px solid";
@@ -150,9 +165,18 @@ function findxy(res, e) {
 }
 
 
-function set_brush_size(){
-    y=document.getElementById('brush_value').value;
-}
+
+
+
+
+
+//jquery tijd...
+
+$(function(){
+    $('#knoppen').draggable();
+    
+
+});
 
 //init paint functions :))))))
 document.onload= init();
