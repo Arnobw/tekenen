@@ -17,7 +17,7 @@
 //mooiere manier : https://codepen.io/medo001/pen/FIbza
 
 var x = "black",
-    y = 2,
+    y = 10,
     rainbow = false;
 
 
