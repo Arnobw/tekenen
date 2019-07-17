@@ -2,7 +2,7 @@
     border: solid 1px black;
     cursor: crosshair;
     background-size:cover;
-    position: relative;
+    position: fixed;
 
     padding-left: 0;
     padding-right: 0;
@@ -17,25 +17,33 @@ main {
     margin-left: auto;
     margin-right: auto;
     display: block;
+    width:1600px;
     
-    border:solid 1px red;
 }
 
 #knoppen {
+    outline: solid 1px black;
+    
+    position:fixed;
+     padding: 5px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    top:865px;
+    background-image:url('wood.jpg');
+    
   
-    border: solid 1px green;
-    margin:0 auto;
-    display: block;   
-    width:1600px;
 }
 
-button {
-    height: 100px;
-    width:100px;
-    padding:20px;
-    box-sizing: border-box;
+button, #brush {
+    height: 50px;
+    width:50px;
+    padding:7px;
+    margin:2px;
     display:inline-block;
-    border: solid 1px orange;
+    box-sizing: content-box;
+    border-radius: 50%;
 }
 
 #green {

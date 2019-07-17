@@ -81,7 +81,7 @@ function init() {
 function color(e) {
     x= e.target.id;
     if(x=="white"){
-        y = 14;
+        y = 30;
     }
     else {
         y=2;
@@ -150,6 +150,9 @@ function findxy(res, e) {
 }
 
 
+function set_brush_size(){
+    y=document.getElementById('brush_value').value;
+}
 
 //init paint functions :))))))
 document.onload= init();
