@@ -34,7 +34,7 @@ var canvas, ctx, flag = false,
     dot_flag = false;
 
 document.getElementById("brush").addEventListener("keyup", function () {
-    y = document.getElementById('brush').value;
+    y = document.getElementById('brush').value/4;
 });
 
 
