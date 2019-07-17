@@ -23,8 +23,8 @@ var x = "black",
 
 
 var img = new Image;
- img.src="img/duck.png";
-    
+img.src = "img/duck.png";
+
 
 var canvas, ctx, flag = false,
     prevX = 0,
@@ -33,11 +33,11 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false;
 
-    document.getElementById("brush").addEventListener("keyup", function() {
-      y=document.getElementById('brush').value;
-        });
+document.getElementById("brush").addEventListener("keyup", function () {
+    y = document.getElementById('brush').value;
+});
 
-    
+
 
 
 
@@ -63,119 +63,111 @@ function init() {
 }
 
 function set_brush_color(e) {
-    x= e.target.id;
-   
-    if (x == "grad"){
+    x = e.target.id;
+
+    if (x == "grad") {
         rainbow = false;
         grd = ctx.createRadialGradient(800.000, 800.000, 0.000, 800.000, 800.000, 800.000);
-        
-      // adds colors to the gradient
-      grd.addColorStop(0.000,'rgba(255, 0, 0, 1.000)');
-      grd.addColorStop(0.150, 'rgba(255, 0, 255, 1.000)');
-      grd.addColorStop(0.330, 'rgba(0, 0, 255, 1.000)');
-      grd.addColorStop(0.490, 'rgba(0, 255, 255, 1.000)');
-      grd.addColorStop(0.670, 'rgba(0, 255, 0, 1.000)');
-      grd.addColorStop(0.840, 'rgba(255, 255, 0, 1.000)');
-      grd.addColorStop(1.000, 'rgba(255, 0, 0, 1.000)');
-        x= grd;
-        
-    }
-    else if (x == "random") {
-      x = getRandomColor();
-      rainbow = true;
-      
-      console.log(rainbow); 
-        
-    }
 
-    else if (x == "farb"){
+        // adds colors to the gradient
+        grd.addColorStop(0.000, 'rgba(255, 0, 0, 1.000)');
+        grd.addColorStop(0.150, 'rgba(255, 0, 255, 1.000)');
+        grd.addColorStop(0.330, 'rgba(0, 0, 255, 1.000)');
+        grd.addColorStop(0.490, 'rgba(0, 255, 255, 1.000)');
+        grd.addColorStop(0.670, 'rgba(0, 255, 0, 1.000)');
+        grd.addColorStop(0.840, 'rgba(255, 255, 0, 1.000)');
+        grd.addColorStop(1.000, 'rgba(255, 0, 0, 1.000)');
+        x = grd;
+
+    } else if (x == "random") {
+        x = getRandomColor();
+        rainbow = true;
+
+        console.log(rainbow);
+
+    } else if (x == "farb") {
         rainbow = false;
-        x = document.getElementById('color').value;  
-    }
-
-    else if (x=="duck"){
-        rainbow = false;
-        x = img;
-    }
-
-    else {
+        x = document.getElementById('color').value;
+    } else {
         rainbow = false;
         console.log(rainbow);
         x = x;
-        
-        
+
+
     }
 }
 
 b = document.getElementsByClassName('paint_btn');
-for(i=0; i<b.length;i++){
+for (i = 0; i < b.length; i++) {
     b[i].addEventListener('click', set_brush_color);
 }
 
- 
+
 
 
 function getRandomColor() {
-    var r=255,g=0,b=0;
-    
-   fader =  setInterval(function(){
-        if(r > 0 && b == 0){
+    var r = 255,
+        g = 0,
+        b = 0;
+
+    fader = setInterval(function () {
+        if (r > 0 && b == 0) {
             r--;
             g++;
-          }
-          if(g > 0 && r == 0){
+        }
+        if (g > 0 && r == 0) {
             g--;
             b++;
-          }
-          if(b > 0 && g == 0){
+        }
+        if (b > 0 && g == 0) {
             r++;
             b--;
         }
-          
-        x= "rgb("+r+","+g+","+b+")";
-    
+
+        x = "rgb(" + r + "," + g + "," + b + ")";
+
         console.log(x);
         console.log("running");
-       
 
-       if(rainbow == false) {
-        clearInterval(fader);
-        console.log("stopped");
-        set_brush_color(x);
-        
-    }
- 
-  
-    
-  
-     
-    },10);
-     
-    }
+
+        if (rainbow == false) {
+            clearInterval(fader);
+            console.log("stopped");
+            set_brush_color(x);
+
+        }
 
 
 
-    
+
+
+    }, 10);
+
+}
+
+
+
+
 
 function draw() {
     ctx.beginPath();
+    ctx.lineJoin = ctx.lineCap = 'round';
     ctx.fillStyle = x;
     ctx.strokeStyle = x;
     ctx.moveTo(prevX, prevY);
     ctx.lineTo(currX, currY);
     ctx.lineWidth = y;
-    ctx.arc(currX, currY, y/2, 0, Math.PI * 4)
+    // ctx.arc(currX, currY, y/2, 0, Math.PI * 4);
     ctx.stroke();
-    ctx.closePath();
     ctx.fill();
-    
+    ctx.closePath();
 }
 
 function erase() {
     var m = confirm("Clear canvas?");
     if (m) {
         ctx.clearRect(0, 0, w, h);
-        
+
     }
 }
 document.getElementById('clear').addEventListener('click', erase);
@@ -213,32 +205,34 @@ function findxy(res, e) {
 }
 
 
-$(document).ready(function() {
+
+
+$(document).ready(function () {
 
     $('#colorpicker').farbtastic('#color');
 
-  });
+});
 
 
 
-  
+
 
 //jquery tijd...
 
 
 
-$(function(){
+$(function () {
     $('#knoppen').draggable();
     $('#color_picker').draggable();
-   
-   
+
+
 
 });
 
-$('#farb').click(function(){
+$('#farb').click(function () {
     $('#color_picker').toggle();
     x = $('#color').val();
 });
 
 //init paint functions :))))))
-document.onload= init();
+document.onload = init();
