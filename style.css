@@ -77,6 +77,31 @@ box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
       }
 
 
+#color_picker {
+    outline:solid 1px black;
+    width:220px;
+    height: auto;
+    padding:10px;
+    border:solid 3px black;
+    border-top:solid 20px black;
+    background-image:url(img/aqua.jpg);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+-moz-box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+   
+}
+
+#colorpicker {
+  margin-left:13px;
+  display:flex;
+ 
+}
+
+#color {
+    display: flex;
+    margin:0 auto;
+}
+
 button, #brush {
     height: 50px;
     width:50px;

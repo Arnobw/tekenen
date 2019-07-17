@@ -83,6 +83,12 @@ function set_brush_color(e) {
       console.log(rainbow); 
         
     }
+
+    else if (x == "farb"){
+        rainbow = false;
+        x = document.getElementById('color').value;  
+    }
+
     else {
         rainbow = false;
         console.log(rainbow);
@@ -153,7 +159,7 @@ function draw() {
      
    
     ctx.lineWidth = y;
-    ctx.arc(currX, currY, y*2, 0, Math.PI * 4)
+    ctx.arc(currX, currY, y, 0, Math.PI * 4)
     ctx.stroke();
     ctx.closePath();
     ctx.fill();
@@ -208,8 +214,11 @@ function findxy(res, e) {
 }
 
 
+$(document).ready(function() {
 
+    $('#colorpicker').farbtastic('#color');
 
+  });
 
 
 
@@ -217,7 +226,9 @@ function findxy(res, e) {
 
 $(function(){
     $('#knoppen').draggable();
-    
+    $('#color_picker').draggable();
+   
+   
 
 });
 
