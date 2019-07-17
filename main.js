@@ -18,6 +18,7 @@
 
 var x = "black",
     y = 2;
+    
 
 var canvas, ctx, flag = false,
     prevX = 0,
@@ -34,7 +35,7 @@ var canvas, ctx, flag = false,
     document.getElementById("brush").addEventListener("keyup", function(e) {
       
     
-        // Enter is pressed
+        
       
             y=document.getElementById('brush').value;
         
@@ -66,18 +67,18 @@ function init() {
 }
 function set_brush_color(e) {
     x= e.target.id;
- 
+   
     if (x == "random"){
-        x = getRandomColor();
-        alert(getRandomColor());
+        x= getRandomColor();
+        
     }
     else {
-        ctx.strokeStyle = x;
+        x = x;
     }
 }
 
 
-function getRandomColor() {
+var x_r = function getRandomColor() {
     var r=255,g=0,b=0;
     
     setInterval(function(){
@@ -95,8 +96,9 @@ function getRandomColor() {
       }
       
       x= "rgb("+r+","+g+","+b+")";
+     
     },10);
-    
+     
     }
 
 
