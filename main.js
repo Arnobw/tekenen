@@ -29,7 +29,7 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false;
 
-    document.getElementById("brush").addEventListener("keyup", function(e) {
+    document.getElementById("brush").addEventListener("keyup", function() {
       y=document.getElementById('brush').value;
         });
 
@@ -153,7 +153,7 @@ function draw() {
      
    
     ctx.lineWidth = y;
-    ctx.arc(currX, currY, y*2, 0, Math.PI * 2)
+    ctx.arc(currX, currY, y*2, 0, Math.PI * 4)
     ctx.stroke();
     ctx.closePath();
     ctx.fill();
@@ -210,14 +210,7 @@ function findxy(res, e) {
 
 
 
-document.getElementById('random').addEventListener('click', function(){
-    rainbow = !rainbow;
-    if (rainbow == true) {
-        document.getElementById("random").innerHTML = "STOP";
-    } else {
-        document.getElementById("random").innerHTML = "START";
-    }
-})
+
 
 
 //jquery tijd...
