@@ -31,7 +31,7 @@ main {
     flex-direction: row;
     justify-content: space-around;
     top:865px;
-    background-image:url('wood.jpg');
+    background-image:url('img/wood.jpg');
     -webkit-box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
 -moz-box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
 box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
@@ -40,7 +40,12 @@ box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
 }
 
 #grad {
-    background-image:url('grad.png');
+    background-image:url('img/grad.png');
+    background-size:contain;
+}
+
+#duck {
+    background-image:url(img/duck.png);
     background-size:contain;
 }
 
@@ -111,6 +116,10 @@ button, #brush {
     box-sizing: content-box;
     border-radius: 50%;
     text-align:center;
+}
+
+#farb {
+    background-image:url(img/aqua.jpg);
 }
 
 #green {

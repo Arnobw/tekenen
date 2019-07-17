@@ -19,7 +19,11 @@
 var x = "black",
     y = 2,
     rainbow = false;
- 
+
+
+
+var img = new Image;
+ img.src="img/duck.png";
     
 
 var canvas, ctx, flag = false,
@@ -89,6 +93,11 @@ function set_brush_color(e) {
         x = document.getElementById('color').value;  
     }
 
+    else if (x=="duck"){
+        rainbow = false;
+        x = img;
+    }
+
     else {
         rainbow = false;
         console.log(rainbow);
@@ -98,7 +107,7 @@ function set_brush_color(e) {
     }
 }
 
-b = document.getElementsByTagName('button');
+b = document.getElementsByClassName('paint_btn');
 for(i=0; i<b.length;i++){
     b[i].addEventListener('click', set_brush_color);
 }
@@ -146,20 +155,16 @@ function getRandomColor() {
 
 
 
+    
+
 function draw() {
     ctx.beginPath();
-
-    
-   
-    
-  
-    
     ctx.fillStyle = x;
     ctx.strokeStyle = x;
-     
-   
+    ctx.moveTo(prevX, prevY);
+    ctx.lineTo(currX, currY);
     ctx.lineWidth = y;
-    ctx.arc(currX, currY, y, 0, Math.PI * 4)
+    ctx.arc(currX, currY, y/2, 0, Math.PI * 4)
     ctx.stroke();
     ctx.closePath();
     ctx.fill();
@@ -175,12 +180,6 @@ function erase() {
 }
 document.getElementById('clear').addEventListener('click', erase);
 
-function save() {
-    document.getElementById("canvasimg").style.border = "2px solid";
-    var dataURL = canvas.toDataURL();
-    document.getElementById("canvasimg").src = dataURL;
-    document.getElementById("canvasimg").style.display = "inline";
-}
 
 function findxy(res, e) {
     if (res == 'down') {
@@ -222,7 +221,11 @@ $(document).ready(function() {
 
 
 
+  
+
 //jquery tijd...
+
+
 
 $(function(){
     $('#knoppen').draggable();
@@ -230,6 +233,11 @@ $(function(){
    
    
 
+});
+
+$('#farb').click(function(){
+    $('#color_picker').toggle();
+    x = $('#color').val();
 });
 
 //init paint functions :))))))
