@@ -76,18 +76,16 @@ function set_brush_color(e) {
         
     }
     else if (x == "random") {
-       rainbow = true;
-       console.log(rainbow);
-        x = getRandomColor();
-       
+      x = getRandomColor();
+      rainbow = true;
+      console.log(rainbow); 
         
     }
     else {
         rainbow = false;
         console.log(rainbow);
         x = x;
-        ctx.fillStyle = x;
-        ctx.strokeStyle = x;
+        
         
     }
 }
@@ -101,12 +99,9 @@ for(i=0; i<b.length;i++){
 
 
 function getRandomColor() {
-  
+    var r=255,g=0,b=0;
     
    fader =  setInterval(function(){
-      
-    var r=255,g=0,b=0;
-        console.log("running");
         if(r > 0 && b == 0){
             r--;
             g++;
@@ -118,10 +113,12 @@ function getRandomColor() {
           if(b > 0 && g == 0){
             r++;
             b--;
+        }
           
-          
-          x= "rgb("+r+","+g+","+b+")";}
+        x= "rgb("+r+","+g+","+b+")";
+    
         console.log(x);
+        console.log("running");
        
 
        if(rainbow == false) {
