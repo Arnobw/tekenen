@@ -62,6 +62,7 @@ function set_brush_color(e) {
     x= e.target.id;
    
     if (x == "grad"){
+        rainbow = false;
         grd = ctx.createRadialGradient(800.000, 800.000, 0.000, 800.000, 800.000, 800.000);
         
       // adds colors to the gradient
@@ -78,6 +79,7 @@ function set_brush_color(e) {
     else if (x == "random") {
       x = getRandomColor();
       rainbow = true;
+      
       console.log(rainbow); 
         
     }
@@ -124,15 +126,17 @@ function getRandomColor() {
        if(rainbow == false) {
         clearInterval(fader);
         console.log("stopped");
+        set_brush_color(x);
+        
     }
  
-       
+  
+    
   
      
     },10);
      
     }
-
 
 
 
@@ -206,7 +210,14 @@ function findxy(res, e) {
 
 
 
-
+document.getElementById('random').addEventListener('click', function(){
+    rainbow = !rainbow;
+    if (rainbow == true) {
+        document.getElementById("random").innerHTML = "STOP";
+    } else {
+        document.getElementById("random").innerHTML = "START";
+    }
+})
 
 
 //jquery tijd...
