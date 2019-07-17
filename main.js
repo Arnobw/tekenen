@@ -78,7 +78,7 @@ function set_brush_color(e) {
 }
 
 
-var x_r = function getRandomColor() {
+function getRandomColor() {
     var r=255,g=0,b=0;
     
     setInterval(function(){
