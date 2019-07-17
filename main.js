@@ -69,6 +69,7 @@ function set_brush_color(e) {
  
     if (x == "random"){
         x = getRandomColor();
+        alert(getRandomColor());
     }
     else {
         ctx.strokeStyle = x;
@@ -92,10 +93,10 @@ function getRandomColor() {
         r++;
         b--;
       }
-      x ="rgb("+r+","+g+","+b+")";
-    
+      
+      x= "rgb("+r+","+g+","+b+")";
     },10);
-        
+    
     }
 
 
@@ -115,6 +116,7 @@ function draw() {
     ctx.stroke();
     ctx.closePath();
     ctx.fillStyle = x;
+    ctx.fill();
 }
 
 function erase() {
