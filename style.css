@@ -39,6 +39,11 @@ box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
   
 }
 
+#grad {
+    background-image:url('grad.png');
+    background-size:contain;
+}
+
 #random {
    
       

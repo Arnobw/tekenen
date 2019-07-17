@@ -68,14 +68,26 @@ function init() {
 function set_brush_color(e) {
     x= e.target.id;
    
-    if (x == "random"){
-        x= getRandomColor();
+    if (x == "grad"){
+        grd = ctx.createRadialGradient(800.000, 800.000, 0.000, 800.000, 800.000, 800.000);
+      
+      // Add colors
+      grd.addColorStop(0.000, 'rgba(255, 0, 0, 1.000)');
+      grd.addColorStop(0.150, 'rgba(255, 0, 255, 1.000)');
+      grd.addColorStop(0.330, 'rgba(0, 0, 255, 1.000)');
+      grd.addColorStop(0.490, 'rgba(0, 255, 255, 1.000)');
+      grd.addColorStop(0.670, 'rgba(0, 255, 0, 1.000)');
+      grd.addColorStop(0.840, 'rgba(255, 255, 0, 1.000)');
+      grd.addColorStop(1.000, 'rgba(255, 0, 0, 1.000)');
+        x= grd;
         
     }
     else {
         x = x;
     }
 }
+
+ 
 
 
 function getRandomColor() {
@@ -110,22 +122,30 @@ for(i=0; i<b.length;i++){
 
 function draw() {
     ctx.beginPath();
+
+    
+   
+    
+  
+    // Fill with gradient
+    ctx.fillStyle = x;
     ctx.strokeStyle = x;
      
    
     ctx.lineWidth = y;
-    ctx.arc(currX, currY, y, 0, Math.PI * 8)
+    ctx.arc(currX, currY, y*2, 0, Math.PI * 8)
     ctx.stroke();
     ctx.closePath();
     ctx.fillStyle = x;
     ctx.fill();
+    
 }
 
 function erase() {
     var m = confirm("Clear canvas?");
     if (m) {
         ctx.clearRect(0, 0, w, h);
-        document.getElementById("can").style.display = "none";
+        
     }
 }
 document.getElementById('clear').addEventListener('click', erase);
