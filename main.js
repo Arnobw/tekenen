@@ -17,7 +17,9 @@
 //mooiere manier : https://codepen.io/medo001/pen/FIbza
 
 var x = "black",
-    y = 2;
+    y = 2,
+    rainbow = false;
+ 
     
 
 var canvas, ctx, flag = false,
@@ -27,19 +29,9 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false;
 
-
-    function set_brush_size(){
-       
-    }
-
     document.getElementById("brush").addEventListener("keyup", function(e) {
-      
-    
-        
-      
-            y=document.getElementById('brush').value;
-        
-    });
+      y=document.getElementById('brush').value;
+        });
 
     
 
@@ -65,14 +57,15 @@ function init() {
         findxy('out', e)
     }, false);
 }
+
 function set_brush_color(e) {
     x= e.target.id;
    
     if (x == "grad"){
         grd = ctx.createRadialGradient(800.000, 800.000, 0.000, 800.000, 800.000, 800.000);
-      
-      // Add colors
-      grd.addColorStop(0.000, 'rgba(255, 0, 0, 1.000)');
+        
+      // adds colors to the gradient
+      grd.addColorStop(0.000,'rgba(255, 0, 0, 1.000)');
       grd.addColorStop(0.150, 'rgba(255, 0, 255, 1.000)');
       grd.addColorStop(0.330, 'rgba(0, 0, 255, 1.000)');
       grd.addColorStop(0.490, 'rgba(0, 255, 255, 1.000)');
@@ -82,42 +75,68 @@ function set_brush_color(e) {
         x= grd;
         
     }
-    else {
-        x = x;
+    else if (x == "random") {
+       rainbow = true;
+       console.log(rainbow);
+        x = getRandomColor();
+       
+        
     }
+    else {
+        rainbow = false;
+        console.log(rainbow);
+        x = x;
+        ctx.fillStyle = x;
+        ctx.strokeStyle = x;
+        
+    }
+}
+
+b = document.getElementsByTagName('button');
+for(i=0; i<b.length;i++){
+    b[i].addEventListener('click', set_brush_color);
 }
 
  
 
 
 function getRandomColor() {
-    var r=255,g=0,b=0;
+  
     
-    setInterval(function(){
-      if(r > 0 && b == 0){
-        r--;
-        g++;
-      }
-      if(g > 0 && r == 0){
-        g--;
-        b++;
-      }
-      if(b > 0 && g == 0){
-        r++;
-        b--;
-      }
+   fader =  setInterval(function(){
       
-      x= "rgb("+r+","+g+","+b+")";
+    var r=255,g=0,b=0;
+        console.log("running");
+        if(r > 0 && b == 0){
+            r--;
+            g++;
+          }
+          if(g > 0 && r == 0){
+            g--;
+            b++;
+          }
+          if(b > 0 && g == 0){
+            r++;
+            b--;
+          
+          
+          x= "rgb("+r+","+g+","+b+")";}
+        console.log(x);
+       
+
+       if(rainbow == false) {
+        clearInterval(fader);
+        console.log("stopped");
+    }
+ 
+       
+  
      
     },10);
      
     }
 
 
-b = document.getElementsByTagName('button');
-for(i=0; i<b.length;i++){
-    b[i].addEventListener('click', set_brush_color);
-}
 
 
 function draw() {
@@ -127,16 +146,15 @@ function draw() {
    
     
   
-    // Fill with gradient
+    
     ctx.fillStyle = x;
     ctx.strokeStyle = x;
      
    
     ctx.lineWidth = y;
-    ctx.arc(currX, currY, y*2, 0, Math.PI * 8)
+    ctx.arc(currX, currY, y*2, 0, Math.PI * 2)
     ctx.stroke();
     ctx.closePath();
-    ctx.fillStyle = x;
     ctx.fill();
     
 }
