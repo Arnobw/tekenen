@@ -229,8 +229,8 @@ $(function () {
 
 });
 
-$('#farb').click(function () {
-    $('#color_picker').toggle();
+$('#colorpicker').mouseup(function () {
+    // $('#color_picker').toggle();
     x = $('#color').val();
 });
 
