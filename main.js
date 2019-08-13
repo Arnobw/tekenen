@@ -35,6 +35,8 @@ var canvas, ctx, flag = false,
 
 document.getElementById("brush").addEventListener("keyup", function () {
     y = document.getElementById('brush').value/4;
+    document.getElementById('box').style.width = y + 'px';
+    document.getElementById('box').style.height = y + 'px';
 });
 
 
@@ -95,7 +97,9 @@ function set_brush_color(e) {
         console.log(rainbow);
         ctx.globalCompositeOperation="source-over";
         x = x;
-
+        document.getElementById("box").style.border ='solid 5px ' + x;
+        document.getElementById('box').style.width = y + 'px';
+        document.getElementById('box').style.height = y + 'px';
 
     }
 }
@@ -239,3 +243,11 @@ $('#colorpicker').mouseup(function () {
 
 //init paint functions :))))))
 document.onload = init();
+
+
+$(document).bind('mousemove', function(e){
+    $('#box').css({
+      top: e.pageY - $("#box").height()/2 , // just minus by half the height
+      left:  e.pageX - $("#box").width()/2  // just minus by half the width
+    });
+  });

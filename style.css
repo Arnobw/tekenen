@@ -1,6 +1,6 @@
 #can {
     border: solid 1px black;
-    cursor: crosshair;
+    cursor: none;
     background-size:cover;
     position: fixed;
 
@@ -161,6 +161,19 @@ body {
 }
 
 canvas {
-    background-image:url(img/canvasbg.jpg);
+    /* background-image:url(img/canvasbg.jpg); */
     background-size:cover;
+    background:white;
 }
+
+#box {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    box-sizing: border-box;
+border:5px solid black;
+    pointer-events: none;
+    }
