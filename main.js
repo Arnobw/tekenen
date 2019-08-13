@@ -84,13 +84,16 @@ function set_brush_color(e) {
         rainbow = true;
 
         console.log(rainbow);
+        }
+        
+        else if (x=="eraser") {
+            ctx.globalCompositeOperation="destination-out";
+        }
 
-    } else if (x == "farb") {
-        rainbow = false;
-        x = document.getElementById('color').value;
-    } else {
+        else {
         rainbow = false;
         console.log(rainbow);
+        ctx.globalCompositeOperation="source-over";
         x = x;
 
 
@@ -133,7 +136,7 @@ function getRandomColor() {
         if (rainbow == false) {
             clearInterval(fader);
             console.log("stopped");
-            set_brush_color(x);
+            x=x;
 
         }
 

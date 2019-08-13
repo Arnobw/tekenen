@@ -154,3 +154,13 @@ button, #brush {
 #white {
     background-color:white;
 }
+
+body {
+    background-image:url('img/bg.jpg');
+    
+}
+
+canvas {
+    background-image:url(img/canvasbg.jpg);
+    background-size:cover;
+}
