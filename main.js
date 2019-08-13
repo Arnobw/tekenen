@@ -70,7 +70,7 @@ function set_brush_color(e) {
     if (x == "grad") {
         rainbow = false;
         grd = ctx.createRadialGradient(800.000, 800.000, 0.000, 800.000, 800.000, 800.000);
-
+        ctx.globalCompositeOperation="source-over";
         // adds colors to the gradient
         grd.addColorStop(0.000, 'rgba(255, 0, 0, 1.000)');
         grd.addColorStop(0.150, 'rgba(255, 0, 255, 1.000)');
@@ -84,7 +84,7 @@ function set_brush_color(e) {
     } else if (x == "random") {
         x = getRandomColor();
         rainbow = true;
-
+        ctx.globalCompositeOperation="source-over";
         console.log(rainbow);
         }
         
@@ -97,7 +97,7 @@ function set_brush_color(e) {
         console.log(rainbow);
         ctx.globalCompositeOperation="source-over";
         x = x;
-        document.getElementById("box").style.border ='solid 5px ' + x;
+        document.getElementById("box").style.backgroundColor =x;
         document.getElementById('box').style.width = y + 'px';
         document.getElementById('box').style.height = y + 'px';
 
@@ -239,6 +239,7 @@ $(function () {
 $('#colorpicker').mouseup(function () {
     // $('#color_picker').toggle();
     x = $('#color').val();
+    document.getElementById("box").style.backgroundColor =x;
 });
 
 //init paint functions :))))))

@@ -161,9 +161,9 @@ body {
 }
 
 canvas {
-    /* background-image:url(img/canvasbg.jpg); */
+    background-image:url(img/can.png); 
     background-size:cover;
-    background:white;
+   
 }
 
 #box {
