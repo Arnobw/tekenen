@@ -16,9 +16,14 @@
 
 //mooiere manier : https://codepen.io/medo001/pen/FIbza
 
+
+
+
+
 var x = "black",
     y = 10,
-    rainbow = false;
+    rainbow = false,
+    duckie = false;
 
 
 
@@ -80,16 +85,24 @@ function set_brush_color(e) {
         grd.addColorStop(0.840, 'rgba(255, 255, 0, 1.000)');
         grd.addColorStop(1.000, 'rgba(255, 0, 0, 1.000)');
         x = grd;
+        duckie = false;
 
     } else if (x == "random") {
         x = getRandomColor();
         rainbow = true;
         ctx.globalCompositeOperation="source-over";
         console.log(rainbow);
+        duckie = false;
         }
         
         else if (x=="eraser") {
             ctx.globalCompositeOperation="destination-out";
+            duckie = false;
+        }
+
+        else if (x=="duck"){
+            duckie = true;
+            ctx.globalCompositeOperation="source-over";
         }
 
         else {
@@ -100,7 +113,7 @@ function set_brush_color(e) {
         document.getElementById("box").style.backgroundColor =x;
         document.getElementById('box').style.width = y + 'px';
         document.getElementById('box').style.height = y + 'px';
-
+        duckie = false;
     }
 }
 
@@ -157,17 +170,24 @@ function getRandomColor() {
 
 
 function draw() {
-    ctx.beginPath();
-    ctx.lineJoin = ctx.lineCap = 'round';
-    ctx.fillStyle = x;
-    ctx.strokeStyle = x;
-    ctx.moveTo(prevX, prevY);
-    ctx.lineTo(currX, currY);
-    ctx.lineWidth = y;
-    // ctx.arc(currX, currY, y/2, 0, Math.PI * 4);
-    ctx.stroke();
-    ctx.fill();
-    ctx.closePath();
+   
+    if (duckie == true){
+        ctx.drawImage(img, currX-62.5, currY-73.5);
+    }
+    else {
+        ctx.beginPath();
+        ctx.lineJoin = ctx.lineCap = 'round';
+        ctx.fillStyle = x;
+        ctx.strokeStyle = x;
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.lineWidth = y;
+        // ctx.arc(currX, currY, y/2, 0, Math.PI * 4);
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
+    }
+   
 }
 
 function erase() {
@@ -214,11 +234,6 @@ function findxy(res, e) {
 
 
 
-$(document).ready(function () {
-
-    $('#colorpicker').farbtastic('#color');
-
-});
 
 
 
@@ -226,6 +241,11 @@ $(document).ready(function () {
 
 //jquery tijd...
 
+$(document).ready(function () {
+
+    $('#colorpicker').farbtastic('#color');
+
+});
 
 
 $(function () {
@@ -240,6 +260,7 @@ $('#colorpicker').mouseup(function () {
     // $('#color_picker').toggle();
     x = $('#color').val();
     document.getElementById("box").style.backgroundColor =x;
+    duckie=false;
 });
 
 //init paint functions :))))))
