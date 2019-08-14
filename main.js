@@ -38,11 +38,11 @@ var canvas, ctx, flag = false,
     currY = 0,
     dot_flag = false;
 
-document.getElementById("brush").addEventListener("keyup", function () {
-    y = document.getElementById('brush').value/4;
-    document.getElementById('box').style.width = y + 'px';
-    document.getElementById('box').style.height = y + 'px';
-});
+// document.getElementById("brush").addEventListener("keyup", function () {
+//     y = document.getElementById('amount').value/4;
+//     document.getElementById('box').style.width = y + 'px';
+//     document.getElementById('box').style.height = y + 'px';
+// });
 
 
 
@@ -256,11 +256,15 @@ $(function () {
 
 });
 
-$('#colorpicker').mouseup(function () {
+$('#color_picker').mouseup(function () {
     // $('#color_picker').toggle();
     x = $('#color').val();
     document.getElementById("box").style.backgroundColor =x;
     duckie=false;
+    y= $('#amount').val();
+    $('#box').css("height", y + 'px');
+    $('#box').css("width", y + 'px');
+
 });
 
 //init paint functions :))))))
@@ -273,3 +277,16 @@ $(document).bind('mousemove', function(e){
       left:  e.pageX - $("#box").width()/2  // just minus by half the width
     });
   });
+
+  $( function() {
+    $( "#slider" ).slider({
+      value:10,
+      min: 0,
+      max: 100,
+      step: 10,
+      slide: function( event, ui ) {
+        $( "#amount" ).val(ui.value );
+      }
+    });
+    $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
+  } );

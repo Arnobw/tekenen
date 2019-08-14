@@ -177,3 +177,27 @@ canvas {
 border:5px solid black;
     pointer-events: none;
     }
+
+
+#slider {
+    width:170px;
+    height:10px;
+    margin:0 auto;
+  
+    
+}
+
+#amount {
+    display: flex;
+    margin:0 auto;
+    margin-top:10px;
+}
+
+#brush_slider {
+    background-color:red;
+    padding: 5px;
+    box-sizing: border-box;
+    margin-top:10px;
+    background-image:url('img/slijderbg.jpg');
+    border:solid 3px black;
+}
