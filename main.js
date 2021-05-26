@@ -24,6 +24,7 @@ var x = "black",
     y = 20,
     rainbow = false,
     duckie = false;
+    eraser = false;
     document.getElementById("box").style.backgroundColor =x;
 
 
@@ -272,6 +273,7 @@ $('#colorpicker').mouseup(function () {
     console.log(fallBack);
     duckie=false;
     rainbow=false;
+    ctx.globalCompositeOperation="source-over";
 });
 
 $('#slider').mouseup(function () {
