@@ -21,10 +21,10 @@
 
 
 var x = "black",
-    y = 10,
+    y = 20,
     rainbow = false,
     duckie = false;
-
+    document.getElementById("box").style.backgroundColor =x;
 
 
 var img = new Image;
@@ -86,7 +86,9 @@ function set_brush_color(e) {
         grd.addColorStop(0.670, 'rgba(0, 255, 0, 1.000)');
         grd.addColorStop(0.840, 'rgba(255, 255, 0, 1.000)');
         grd.addColorStop(1.000, 'rgba(255, 0, 0, 1.000)');
+        x = fallBack;
         x = grd;
+        document.getElementById("box").style.backgroundColor = grd;
         duckie = false;
 
     } else if (x == "random") {
@@ -148,8 +150,9 @@ function getRandomColor() {
             b--;
         }
 
-        x = "rgb(" + r + "," + g + "," + b + ")";
-
+        laatstekleur = "rgb(" + r + "," + g + "," + b + ")";
+        x = laatstekleur;
+        document.getElementById("box").style.backgroundColor =x;
         console.log(x);
         console.log("running");
 
@@ -158,6 +161,8 @@ function getRandomColor() {
             clearInterval(fader);
             console.log("stopped");
             x = fallBack;
+            document.getElementById("box").style.backgroundColor =x;
+            console.log(laatstekleur);
         }
 
 
@@ -259,7 +264,7 @@ $(function () {
 
 });
 
-$('#color_picker').mouseup(function () {
+$('#colorpicker').mouseup(function () {
     // $('#color_picker').toggle();
     x = $('#color').val();
     document.getElementById("box").style.backgroundColor =x;
@@ -267,11 +272,16 @@ $('#color_picker').mouseup(function () {
     console.log(fallBack);
     duckie=false;
     rainbow=false;
+});
+
+$('#slider').mouseup(function () {
     y= $('#amount').val();
     $('#box').css("height", y + 'px');
     $('#box').css("width", y + 'px');
 
 });
+
+
 
 //init paint functions :))))))
 document.onload = init();
