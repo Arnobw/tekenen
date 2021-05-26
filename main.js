@@ -22,9 +22,11 @@
 
 var x = "black",
     y = 20,
+    shadow = 10; 
     rainbow = false,
     duckie = false;
     eraser = false;
+    neonBrush = false;
     document.getElementById("box").style.backgroundColor =x;
 
 
@@ -183,19 +185,22 @@ function draw() {
     if (duckie == true){
         ctx.drawImage(img, currX-62.5, currY-73.5);
     }
-    else {
+    else{
+        isDrawing = true;
         ctx.beginPath();
         ctx.lineJoin = ctx.lineCap = 'round';
+        ctx.shadowBlur = shadow;
+        ctx.shadowColor = x;
         ctx.fillStyle = x;
         ctx.strokeStyle = x;
         ctx.moveTo(prevX, prevY);
         ctx.lineTo(currX, currY);
         ctx.lineWidth = y;
-        // ctx.arc(currX, currY, y/2, 0, Math.PI * 4);
         ctx.stroke();
         ctx.fill();
         ctx.closePath();
-    }
+
+    } 
    
 }
 
@@ -308,3 +313,31 @@ $(document).bind('mousemove', function(e){
     });
     $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
   } );
+
+
+
+
+
+
+    //counter shit 
+    $(document).ready(function() {
+        $('.minus').click(function () {
+            var $input = $(this).parent().find('input');
+            shadow--;
+            $input.val(shadow);
+            $input.change();
+
+
+
+            console.log(shadow);
+
+        });
+        $('.plus').click(function () {
+            var $input = $(this).parent().find('input');
+
+            shadow++;
+            $input.val(shadow);
+            $input.change();
+            console.log(shadow);
+        });
+    });
