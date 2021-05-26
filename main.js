@@ -113,7 +113,7 @@ function set_brush_color(e) {
         rainbow = false;
         console.log(rainbow);
         ctx.globalCompositeOperation="source-over";
-        x = x;
+        x = fallBack;
         document.getElementById("box").style.backgroundColor =x;
         document.getElementById('box').style.width = y + 'px';
         document.getElementById('box').style.height = y + 'px';
@@ -157,9 +157,7 @@ function getRandomColor() {
         if (rainbow == false) {
             clearInterval(fader);
             console.log("stopped");
-            x=fallBack;
-
-
+            x = fallBack;
         }
 
 
@@ -265,7 +263,10 @@ $('#color_picker').mouseup(function () {
     // $('#color_picker').toggle();
     x = $('#color').val();
     document.getElementById("box").style.backgroundColor =x;
+    fallBack = x;
+    console.log(fallBack);
     duckie=false;
+    rainbow=false;
     y= $('#amount').val();
     $('#box').css("height", y + 'px');
     $('#box').css("width", y + 'px');

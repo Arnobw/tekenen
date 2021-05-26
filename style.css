@@ -22,19 +22,17 @@ main {
 }
 
 #knoppen {
-    outline: solid 1px black;
-    
-    position:fixed;
-     padding: 5px;
+    margin-top:10px;
+    padding: 5px;
     box-sizing:border-box;
     display:flex;
     flex-direction: row;
     justify-content: space-around;
-    top:865px;
-    background-image:url('img/wood.jpg');
-    -webkit-box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
--moz-box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
-box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
+    flex-wrap:wrap; 
+    /* background-image:url('img/wood.jpg'); */
+    /* -webkit-box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
+    -moz-box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48);
+    box-shadow: 11px 11px 8px -1px rgba(0,0,0,0.48); */
     
   
 }
