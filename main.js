@@ -71,6 +71,8 @@ function init() {
 
 function set_brush_color(e) {
     x = e.target.id;
+    fallBack = x;
+    console.log(fallBack);
 
     if (x == "grad") {
         rainbow = false;
@@ -98,10 +100,12 @@ function set_brush_color(e) {
         else if (x=="eraser") {
             ctx.globalCompositeOperation="destination-out";
             duckie = false;
+            rainbow = false;
         }
 
         else if (x=="duck"){
             duckie = true;
+            rainbow = false;
             ctx.globalCompositeOperation="source-over";
         }
 
@@ -153,7 +157,8 @@ function getRandomColor() {
         if (rainbow == false) {
             clearInterval(fader);
             console.log("stopped");
-            x=x;
+            x=fallBack;
+
 
         }
 
@@ -161,7 +166,7 @@ function getRandomColor() {
 
 
 
-    }, 10);
+    }, 70);
 
 }
 
