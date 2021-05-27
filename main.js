@@ -1,13 +1,13 @@
 var x = "black",
     y = 20,
-    shadow = 10,
+    shadow = 0,
     hue = 0;
     rainbow = false,
     duckie = false;
     eraser = false;
-    neonBrush = false;
     defaultBrush = true;
-    rainbowBrush = false;
+    hueBrush = false;
+    pulseBrush = false;
     direction = true;
     document.getElementById("box").style.backgroundColor =x;
 
@@ -90,7 +90,7 @@ function set_brush_color(e) {
             defaultBrush = false;
             duckie = false;
             rainbow = false;
-            rainbowBrush = true;
+            hueBrush = true;
         }
 
         else {
@@ -112,7 +112,7 @@ for (i = 0; i < b.length; i++) {
 
 
 
-
+//weggegooid want het is stinky
 function getRandomColor() {
     var r = 255,
         g = 0,
@@ -159,7 +159,7 @@ function getRandomColor() {
 
 // BRUSHES
 function draw() {
-   
+
     if (duckie == true){
         ctx.drawImage(img, currX-62.5, currY-73.5);
     }
@@ -178,7 +178,7 @@ function draw() {
         ctx.fill();
         ctx.closePath();
 
-    } else if (rainbowBrush == true) {
+    } else if (hueBrush == true) {
         ctx.shadowBlur = shadow;
         ctx.shadowColor = `hsl(${hue}, 100%, 50%)`;;
         ctx.lineJoin = 'round';
@@ -188,23 +188,29 @@ function draw() {
         ctx.moveTo(prevX, prevY);
         ctx.lineTo(currX, currY);
         ctx.stroke();
+        ctx.lineWidth = y;
         hue++;
         if (hue >= 360) { hue = 0; }
-        if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
-          direction = !direction;
         }
-        if (direction) {
-          ctx.lineWidth--;
-        }
-        else {
-          ctx.lineWidth++;
-        }
-      
-      }
     }
    
 
-
+ function pulse(){
+    if (pulseBrush == true) {
+        if (hue >= 360) { hue = 0; }
+    if (yh >= 100 || y <= 10) {
+      direction = !direction;
+    }
+    if (direction) {
+      y--;
+    }
+    else {
+      y++;
+    }
+    } else {
+        ctx.lineWidth = y;
+    }
+ };   
 function erase() {
     var m = confirm("Clear canvas?");
     if (m) {
@@ -233,6 +239,7 @@ function findxy(res, e) {
     }
     
     if (duckie) {
+        shadow=0;
         draw();
     }
 
@@ -332,3 +339,11 @@ $(document).bind('mousemove', function(e){
             console.log(shadow);
         });
     });
+
+$('#pulsebrush').click(function(){
+    if(pulseBrush == false) {
+        pulseBrush = true;
+    } else {
+        pulseBrush = false;
+    }
+});
