@@ -1,7 +1,8 @@
 var x = "black",
-    y = 20,
+    y = document.getElementById('amount').value;
     shadow = 0,
-    hue = 0;
+    hue = 0,
+    composite = "source-over",
     rainbow = false,
     duckie = false;
     eraser = false;
@@ -10,10 +11,10 @@ var x = "black",
     pulseBrush = false;
     direction = true;
     document.getElementById("box").style.backgroundColor =x;
+    img = new Image;
+    img.src = "img/duck.png";
 
 
-var img = new Image;
-img.src = "img/duck.png";
 
 
 var canvas, ctx, flag = false,
@@ -28,6 +29,7 @@ function init() {
     ctx = canvas.getContext("2d");
     w = canvas.width;
     h = canvas.height;
+
 
     canvas.addEventListener("mousemove", function (e) {
         findxy('move', e)
@@ -68,7 +70,7 @@ function set_brush_color(e) {
     } else if (x == "random") {
         x = getRandomColor();
         rainbow = true;
-        ctx.globalCompositeOperation="source-over";
+        ctx.globalCompositeOperation=composite;
         console.log(rainbow);
         duckie = false;
         }
@@ -76,14 +78,15 @@ function set_brush_color(e) {
         else if (x=="eraser") {
             ctx.globalCompositeOperation="destination-out";
             duckie = false;
-            rainbow = false;
+            hueBrush = false;
         }
 
         else if (x=="duck"){
             duckie = true;
             rainbow = false;
+            hueBrush = false;
 
-            ctx.globalCompositeOperation="source-over";
+            ctx.globalCompositeOperation=composite;
         }
 
         else if (x=="rainbowBrush"){
@@ -91,17 +94,19 @@ function set_brush_color(e) {
             duckie = false;
             rainbow = false;
             hueBrush = true;
+            x=fallBack;
         }
 
         else {
         rainbow = false;
         console.log(rainbow);
-        ctx.globalCompositeOperation="source-over";
+        ctx.globalCompositeOperation=composite;
         x = fallBack;
         document.getElementById("box").style.backgroundColor =x;
         document.getElementById('box').style.width = y + 'px';
         document.getElementById('box').style.height = y + 'px';
         duckie = false;
+        hueBrush = false;
     }
 }
 
@@ -159,6 +164,25 @@ function getRandomColor() {
 
 // BRUSHES
 function draw() {
+    
+    function pulse(){
+
+        if (pulseBrush == true) {
+            if (y >= 100 || y <= 10) {
+                direction = !direction;
+              }
+              if (direction) {
+                y--;
+              }
+              else {
+                y++;
+              }
+              return y; 
+        } else {
+            y = document.getElementById('amount').value;
+
+        } return y;
+     };   
 
     if (duckie == true){
         ctx.drawImage(img, currX-62.5, currY-73.5);
@@ -173,52 +197,44 @@ function draw() {
         ctx.strokeStyle = x;
         ctx.moveTo(prevX, prevY);
         ctx.lineTo(currX, currY);
-        ctx.lineWidth = y;
+        ctx.lineWidth = pulse();
+        ctx.globalCompositeOperation = composite;
         ctx.stroke();
         ctx.fill();
         ctx.closePath();
 
     } else if (hueBrush == true) {
+        isDrawing = true;
+        ctx.beginPath();
+        ctx.fillStyle = x;
+        ctx.strokeStyle = x;
+        ctx.globalCompositeOperation = composite;
         ctx.shadowBlur = shadow;
         ctx.shadowColor = `hsl(${hue}, 100%, 50%)`;;
         ctx.lineJoin = 'round';
         ctx.lineCap = 'round';
         ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
-        ctx.beginPath();
         ctx.moveTo(prevX, prevY);
         ctx.lineTo(currX, currY);
-        ctx.stroke();
-        ctx.lineWidth = y;
+        ctx.lineWidth = pulse();
         hue++;
         if (hue >= 360) { hue = 0; }
         }
+        ctx.stroke();
+        ctx.fill();
+        ctx.closePath();
     }
    
 
- function pulse(){
-    if (pulseBrush == true) {
-        if (hue >= 360) { hue = 0; }
-    if (yh >= 100 || y <= 10) {
-      direction = !direction;
-    }
-    if (direction) {
-      y--;
-    }
-    else {
-      y++;
-    }
-    } else {
-        ctx.lineWidth = y;
-    }
- };   
-function erase() {
+
+function clear() {
     var m = confirm("Clear canvas?");
     if (m) {
         ctx.clearRect(0, 0, w, h);
 
     }
 }
-document.getElementById('clear').addEventListener('click', erase);
+document.getElementById('clear').addEventListener('click', clear);
 
 function findxy(res, e) {
     if (res == 'down') {
@@ -265,13 +281,12 @@ $(document).ready(function () {
 
 });
 
+$('#composite').mouseup(function(){
+    composite = $('#composite').val();
+})
 
 $(function () {
-    $('#knoppen').draggable();
     $('#color_picker').draggable();
-
-
-
 });
 
 $('#colorpicker').mouseup(function () {
@@ -340,10 +355,11 @@ $(document).bind('mousemove', function(e){
         });
     });
 
-$('#pulsebrush').click(function(){
+$('#pulseBrush').click(function(){
     if(pulseBrush == false) {
         pulseBrush = true;
     } else {
         pulseBrush = false;
+
     }
 });

@@ -36,6 +36,8 @@
 
 
     </main>
+
+
     <div id="color_picker">
 
 
@@ -44,6 +46,20 @@
 
         <form><input type="text" id="color" name="color" value="#123456" /></form>
 
+
+            <select name="composites" id="composite">
+                <option value="source-over">default</option>
+                <option value="overlay">overlay</option>
+                <option value="lighten">lighten</option>
+                <option value="darken">darken</option>
+                <option value="color-dodge">color-dodge</option>
+                <option value="color-burn">color-burn</option>
+                <option value="multiply">multiply</option>
+                <option value="soft-light">soft light</option>
+                <option value="difference">difference</option>
+                <option value="luminosity">luminosity</option>
+        
+            </select>
 
         <div id="brush_slider">
             <p id="brushp">brush thiccness</p>
@@ -72,7 +88,7 @@
                 <button class="paint_btn" id="eraser">ERASER</button>
                 <button class="paint_btn" id="clear">CLEAR</button>
                 <button class="paint_btn" id="duck"></button>
-                <button class="paint_btn" id="pulse"></button>
+                <button class="paint_btn" id="pulseBrush"></button>
 
             </div>
         </div>

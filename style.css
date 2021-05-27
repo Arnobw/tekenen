@@ -309,3 +309,8 @@ canvas {
     font-family: 'Ultra', serif;
     font-size:16px
 }
+
+
+#composite {
+    margin: 10px 0 10px 0;
+}
