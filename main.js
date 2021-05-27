@@ -1,32 +1,14 @@
-// var canvas = document.getElementById("canvasje");
-// var ctx = canvas.getContext("2d");
-
-
-
-//pixel art omegalole
-// canvas.addEventListener('mousedown',function(){
-//     var x = event.clientX;     // Get the horizontal coordinate
-//     var y = event.clientY;     // Get the vertical coordinate
-
-//     ctx.fillStyle = "#FF0000";
-
-// ctx.fillRect(x-14, y-14, 10, 10);
-// console.log('drawing at' + x + " " + "and" + y + "!");
-// });
-
-//mooiere manier : https://codepen.io/medo001/pen/FIbza
-
-
-
-
-
 var x = "black",
     y = 20,
-    shadow = 10; 
+    shadow = 10,
+    hue = 0;
     rainbow = false,
     duckie = false;
     eraser = false;
     neonBrush = false;
+    defaultBrush = true;
+    rainbowBrush = false;
+    direction = true;
     document.getElementById("box").style.backgroundColor =x;
 
 
@@ -40,17 +22,6 @@ var canvas, ctx, flag = false,
     prevY = 0,
     currY = 0,
     dot_flag = false;
-
-// document.getElementById("brush").addEventListener("keyup", function () {
-//     y = document.getElementById('amount').value/4;
-//     document.getElementById('box').style.width = y + 'px';
-//     document.getElementById('box').style.height = y + 'px';
-// });
-
-
-
-
-
 
 function init() {
     canvas = document.getElementById('can');
@@ -111,7 +82,15 @@ function set_brush_color(e) {
         else if (x=="duck"){
             duckie = true;
             rainbow = false;
+
             ctx.globalCompositeOperation="source-over";
+        }
+
+        else if (x=="rainbowBrush"){
+            defaultBrush = false;
+            duckie = false;
+            rainbow = false;
+            rainbowBrush = true;
         }
 
         else {
@@ -178,14 +157,13 @@ function getRandomColor() {
 
 
 
-
-
+// BRUSHES
 function draw() {
    
     if (duckie == true){
         ctx.drawImage(img, currX-62.5, currY-73.5);
     }
-    else{
+    else if (defaultBrush == true){
         isDrawing = true;
         ctx.beginPath();
         ctx.lineJoin = ctx.lineCap = 'round';
@@ -200,9 +178,32 @@ function draw() {
         ctx.fill();
         ctx.closePath();
 
-    } 
+    } else if (rainbowBrush == true) {
+        ctx.shadowBlur = shadow;
+        ctx.shadowColor = `hsl(${hue}, 100%, 50%)`;;
+        ctx.lineJoin = 'round';
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = `hsl(${hue}, 100%, 50%)`;
+        ctx.beginPath();
+        ctx.moveTo(prevX, prevY);
+        ctx.lineTo(currX, currY);
+        ctx.stroke();
+        hue++;
+        if (hue >= 360) { hue = 0; }
+        if (ctx.lineWidth >= 100 || ctx.lineWidth <= 1) {
+          direction = !direction;
+        }
+        if (direction) {
+          ctx.lineWidth--;
+        }
+        else {
+          ctx.lineWidth++;
+        }
+      
+      }
+    }
    
-}
+
 
 function erase() {
     var m = confirm("Clear canvas?");
@@ -212,7 +213,6 @@ function erase() {
     }
 }
 document.getElementById('clear').addEventListener('click', erase);
-
 
 function findxy(res, e) {
     if (res == 'down') {
@@ -231,6 +231,12 @@ function findxy(res, e) {
             dot_flag = false;
         }
     }
+    
+    if (duckie) {
+        draw();
+    }
+
+
     if (res == 'up' || res == "out") {
         flag = false;
     }
@@ -245,16 +251,7 @@ function findxy(res, e) {
     }
 }
 
-
-
-
-
-
-
-
-
 //jquery tijd...
-
 $(document).ready(function () {
 
     $('#colorpicker').farbtastic('#color');
@@ -278,6 +275,7 @@ $('#colorpicker').mouseup(function () {
     console.log(fallBack);
     duckie=false;
     rainbow=false;
+    defaultBrush=true;
     ctx.globalCompositeOperation="source-over";
 });
 
@@ -287,8 +285,6 @@ $('#slider').mouseup(function () {
     $('#box').css("width", y + 'px');
 
 });
-
-
 
 //init paint functions :))))))
 document.onload = init();
@@ -313,11 +309,6 @@ $(document).bind('mousemove', function(e){
     });
     $( "#amount" ).val( $( "#slider" ).slider( "value" ) );
   } );
-
-
-
-
-
 
     //counter shit 
     $(document).ready(function() {
