@@ -230,6 +230,10 @@ function findxy(res, e) {
             ctx.closePath();
             dot_flag = false;
         }
+        
+        if (duckie) {
+            draw();
+        }
     }
     
     if (duckie) {
