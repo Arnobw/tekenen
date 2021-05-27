@@ -76,9 +76,13 @@ function set_brush_color(e) {
         }
         
         else if (x=="eraser") {
-            ctx.globalCompositeOperation="destination-out";
+            console.log(composite);
             duckie = false;
             hueBrush = false;
+            defaultBrush=false;
+            eraser=true;
+
+            ctx.globalCompositeOperation="destination-out";
         }
 
         else if (x=="duck"){
