@@ -89,12 +89,15 @@ function set_brush_color(e) {
             ctx.globalCompositeOperation=composite;
         }
 
-        else if (x=="rainbowBrush"){
+        else if (x=="hueBrush"){
             defaultBrush = false;
             duckie = false;
             rainbow = false;
             hueBrush = true;
-            x=fallBack;
+        }
+
+        else if (x=="pulseBrush"){
+            x = fallBack;
         }
 
         else {
@@ -165,21 +168,29 @@ function getRandomColor() {
 // BRUSHES
 function draw() {
     
+    //PULSE BRUSH
     function pulse(){
-
+        brushState = x;
         if (pulseBrush == true) {
             if (y >= 100 || y <= 10) {
                 direction = !direction;
               }
               if (direction) {
                 y--;
+                $('#box').css("height", y + 'px');
+                $('#box').css("width", y + 'px');
               }
               else {
-                y++;
+                y++;   
+                $('#box').css("height", y + 'px');
+                $('#box').css("width", y + 'px');
               }
               return y; 
         } else {
             y = document.getElementById('amount').value;
+            $('#box').css("height", y + 'px');
+            $('#box').css("width", y + 'px');
+            x = brushState;
 
         } return y;
      };   
