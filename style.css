@@ -314,3 +314,19 @@ canvas {
 #composite {
     margin: 10px 0 10px 0;
 }
+
+
+#pulseBrush {
+    background-image: url(img/wave.jpg);
+    background-size: contain;
+}
+
+#eraser {
+    background-image: url(img/eraser.png);
+    background-size:contain;
+}
+
+#clear {
+    background-image: url(img/trash.png);
+    background-size:contain;
+}
