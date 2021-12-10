@@ -49,6 +49,7 @@ function set_brush_color(e) {
     x = e.target.id;
     fallBack = x;
     console.log(fallBack);
+    klik.play();
 
     if (x == "grad") {
         rainbow = false;
@@ -76,13 +77,11 @@ function set_brush_color(e) {
         }
         
         else if (x=="eraser") {
-            console.log(composite);
+
             duckie = false;
             hueBrush = false;
             defaultBrush=false;
             eraser=true;
-
-            ctx.globalCompositeOperation="destination-out";
         }
 
         else if (x=="duck"){
@@ -234,6 +233,22 @@ function draw() {
         ctx.lineWidth = pulse();
         hue++;
         if (hue >= 360) { hue = 0; }
+        }  else if (eraser == true){
+            isDrawing = true;
+            ctx.beginPath();
+            ctx.lineJoin = ctx.lineCap = 'round';
+            ctx.shadowBlur = shadow;
+            ctx.shadowColor = x;
+            ctx.fillStyle = x;
+            ctx.strokeStyle = x;
+            ctx.moveTo(prevX, prevY);
+            ctx.lineTo(currX, currY);
+            ctx.lineWidth = pulse();
+            ctx.globalCompositeOperation = "destination-out";
+            ctx.stroke();
+            ctx.fill();
+            ctx.closePath();
+    
         }
         ctx.stroke();
         ctx.fill();
@@ -246,7 +261,7 @@ function clear() {
     var m = confirm("Clear canvas?");
     if (m) {
         ctx.clearRect(0, 0, w, h);
-
+        ohno.play();
     }
 }
 document.getElementById('clear').addEventListener('click', clear);
@@ -304,8 +319,11 @@ $(function () {
     $('#color_picker').draggable();
 });
 
+
+
 $('#colorpicker').mouseup(function () {
     // $('#color_picker').toggle();
+    alt_biep.play();
     x = $('#color').val();
     document.getElementById("box").style.backgroundColor =x;
     fallBack = x;
@@ -313,10 +331,11 @@ $('#colorpicker').mouseup(function () {
     duckie=false;
     rainbow=false;
     defaultBrush=true;
-    ctx.globalCompositeOperation="source-over";
+    ctx.globalCompositeOperation=composite;
 });
 
 $('#slider').mouseup(function () {
+    klik.play();
     y= $('#amount').val();
     $('#box').css("height", y + 'px');
     $('#box').css("width", y + 'px');
@@ -354,7 +373,7 @@ $(document).bind('mousemove', function(e){
             shadow--;
             $input.val(shadow);
             $input.change();
-
+            minus.play();
 
 
             console.log(shadow);
@@ -367,6 +386,7 @@ $(document).bind('mousemove', function(e){
             $input.val(shadow);
             $input.change();
             console.log(shadow);
+            biep.play();
         });
     });
 
@@ -377,4 +397,37 @@ $('#pulseBrush').click(function(){
         pulseBrush = false;
 
     }
+});
+
+
+// GELUIDEN
+
+var klik = new Howl({
+    src: ['audio/blip1.wav'],
+    volume: 0.4
+});
+
+var biep = new Howl({
+    src: ['audio/button14.wav'],
+    volume: 0.4
+});
+
+var alt_biep = new Howl({
+    src: ['audio/button17.wav'],
+    volume: 0.4
+});
+
+var minus = new Howl({
+    src: ['audio/button10.wav'],
+    volume: 0.4
+});
+
+// var draw = new Howl({
+//     src: ['audio/marker.mp3'],
+//     volume: 0.07
+// });
+
+var ohno = new Howl({
+    src: ['audio/ohno.mp3'],
+    volume: 0.5
 });

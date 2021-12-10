@@ -30,14 +30,14 @@
 
 
 
-        <!-- dit is de penseel blijkbaar -->
+        <!-- dit is de penseel blijkbaar xd -->
         <div id="box"></div>
-        <!-- dit is de penseel blijkbaar -->
+
 
 
     </main>
 
-
+<!--farbtastic plugin niet aan prutsen aub-->
     <div id="color_picker">
 
 
@@ -46,7 +46,7 @@
 
         <form><input type="text" id="color" name="color" value="#123456" /></form>
 
-
+                <p id="blendingp">blending</p>
             <select name="composites" id="composite">
                 <option value="source-over">default</option>
                 <option value="overlay">overlay</option>
@@ -61,12 +61,13 @@
         
             </select>
 
+            <!-- grootte penseel -->
         <div id="brush_slider">
             <p id="brushp">brush thiccness</p>
             <div id="slider"></div>
             <input type="text" id="amount" readonly>
             
-            
+            <!-- dikte schaduw -->
             <p id="shadowp">Shadow thiccness</p>
             <div class="number">
                 <span class="minus">-</span>
@@ -74,17 +75,9 @@
                 <span class="plus">+</span>
             </div>
 
+            <!-- penseel opties -->
             <div id="knoppen">
-                <!-- <button class="paint_btn" id="green" ></button>
-            <button class="paint_btn" id="red" ></button>
-            <button class="paint_btn" id="yellow"></button>
-            <button class="paint_btn" id="orange" ></button>
-            <button class="paint_btn" id="blue" ></button>
-            <button class="paint_btn" id="pink" ></button>
-            <button class="paint_btn" id="black" ></button> -->
-
                 <button class="paint_btn" id="hueBrush"></button>
-                <!-- <button class="paint_btn" id="grad"></button> -->
                 <button class="paint_btn" id="eraser"></button>
                 <button class="paint_btn" id="clear"></button>
                 <button class="paint_btn" id="duck"></button>
@@ -101,12 +94,10 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
         integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="farbtastic/farbtastic.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/howler/2.2.3/howler.core.min.js"></script>
 
 
     <script src="main.js"></script>
-
-    <!-- <script src="test.js"></script> -->
-
 </body>
 
 </html>

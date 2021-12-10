@@ -331,3 +331,10 @@ canvas {
     background-size:contain;
     background-repeat: no-repeat;
 }
+
+
+#blendingp {
+    font-family: 'Ultra', serif;
+    font-size:16px;
+    background-color:#dd00f3;
+}
